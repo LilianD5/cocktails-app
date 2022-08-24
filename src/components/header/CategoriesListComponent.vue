@@ -16,10 +16,19 @@ export default {
 .sous-menu-li{
   font-size: 20px;
   letter-spacing: 3px;
-  color: #efefef;
   padding-top: 15px;
+  padding-left: 15px;
 }
 .sous-menu-li:hover{
   color: #9e9e9e;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 500px) {
+  .sous-menu-li{
+  font-size: 15px;
+  letter-spacing: 1px;
+  }
 }
 </style>

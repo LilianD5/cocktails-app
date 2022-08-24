@@ -1,6 +1,6 @@
 <template>
   <header>
-    <div v-on:click="showMenu" id="burger-icon">
+    <div v-on:click="toggleMenu" id="burger-icon">
       <div class="menu-button" id="menu-button-top"></div>
       <div class="menu-button" id="menu-button-center"></div>
       <div class="menu-button" id="menu-button-bottom"></div>
@@ -10,27 +10,30 @@
         <img class="logo" src="../assets/logo_v1_transparent_255x176.png" alt="Booze Club Logo">
       </router-link>
     </figure>
-    <h1>your prenium cocktail app</h1>
+    <h1>your premium cocktail app</h1>
   </header>
   <nav class="menu-burger none">
     <ul class="menu-list">
+      <router-link :to="{ name: 'home' }">
+        <li v-on:click="toggleMenu" class="menu-li">Home</li>
+      </router-link>
       <router-link :to="{ name: 'type', params: {type: 'Alcoholic'}}">
-        <li v-on:click="closeMenu" class="menu-li">Selection with alcohol</li>
+        <li v-on:click="toggleMenu" class="menu-li">Selection with alcohol</li>
       </router-link>
       <router-link :to="{ name: 'type', params: {type: 'Non_Alcoholic'}}">
-        <li v-on:click="closeMenu" class="menu-li">Selection without alcohol</li>
+        <li v-on:click="toggleMenu" class="menu-li">Selection without alcohol</li>
       </router-link>
       <li class="menu-li" v-on:click="showSubMenu('#sub-ingredients')">Selection by ingredient
         <nav class="none" id="sub-ingredients">
           <ul>
-            <IngredientsList v-on:click="closeMenu" v-for="item in ingredientsData" :key="item.strIngredient1" :name="item.strIngredient1"/>
+            <IngredientsList v-on:click="toggleMenu" v-for="item in ingredientsData" :key="item.strIngredient1" :name="item.strIngredient1"/>
           </ul>
         </nav>
       </li>
       <li class="menu-li" v-on:click="showSubMenu('#sub-category')">Selection by category
         <nav class="none" id="sub-category">
           <ul>
-            <CategoriesList v-for="item in categoriesData" :key="item.strCategory" :name="item.strCategory"/>
+            <CategoriesList v-on:click="toggleMenu" v-for="item in categoriesData" :key="item.strCategory" :name="item.strCategory"/>
           </ul>
         </nav>
       </li>
@@ -40,8 +43,8 @@
 
 <script>
 import ApiService from '@/services/api.service.js'
-import IngredientsList from './IngredientsListComponent.vue'
-import CategoriesList from './CategoriesListComponent.vue'
+import IngredientsList from './header/IngredientsListComponent.vue'
+import CategoriesList from './header/CategoriesListComponent.vue'
 
 const apiService = new ApiService()
 
@@ -63,23 +66,21 @@ export default {
     this.allCategories()
   },
   methods: {
-    showMenu: function () {
+    toggleMenu: function () {
       const menuBurgerTop = document.querySelector('#menu-button-top')
       const menuBurgerCenter = document.querySelector('#menu-button-center')
       const menuBurgerBottom = document.querySelector('#menu-button-bottom')
       const menuBurger = document.querySelector('.menu-burger')
+      const cocktailsLists = document.querySelector('body')
       menuBurgerTop.classList.toggle('top-transformation')
       menuBurgerBottom.classList.toggle('bottom-transformation')
       menuBurgerCenter.classList.toggle('none')
       menuBurger.classList.toggle('none')
+      cocktailsLists.classList.toggle('overflow-hidden')
     },
     showSubMenu: function (id) {
       const subNav = document.querySelector(id)
       subNav.classList.toggle('none')
-    },
-    closeMenu: function () {
-      const menuBurger = document.querySelector('.menu-burger')
-      menuBurger.classList.add('none')
     },
     async allIngredients () {
       const res = await apiService.getAllIngredients()
@@ -97,7 +98,6 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 /* General */
 
@@ -110,8 +110,6 @@ li, h1{
 }
 
 h1{
-  color: #efefef;
-  font-family: 'Antic Didone', 'Times New Roman', Times, serif;
   letter-spacing: 4px;
   font-weight: 300;
   font-size: 35px;
@@ -198,6 +196,7 @@ h1{
 
 .menu-list a {
   text-decoration: none;
+  color: #d8d8d8;
 }
 
 .menu-list li:hover {
@@ -205,10 +204,8 @@ h1{
 }
 
 .menu-li{
-  font-family: 'Antic Didone';
   font-size: 25px;
   letter-spacing: 3px;
-  color: #efefef;
   padding: 15px 0;
   cursor: pointer;
 }
@@ -251,10 +248,8 @@ h1{
   }
 
   .menu-li{
-  font-family: 'Antic Didone';
   font-size: 17px;
   letter-spacing: 2px;
-  color: #efefef;
   padding: 10px 0;
   cursor: pointer;
 }

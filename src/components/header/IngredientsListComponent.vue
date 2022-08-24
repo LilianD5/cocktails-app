@@ -16,8 +16,8 @@ export default {
 .sous-menu-li{
   font-size: 20px;
   letter-spacing: 3px;
-  color: #efefef;
   padding-top: 15px;
+  padding-left: 15px;
 }
 .sous-menu-li:hover{
   color: #9e9e9e;

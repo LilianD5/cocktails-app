@@ -1,12 +1,17 @@
 <template>
   <HeaderComponent/>
-  <ul>
-    <CocktailsList v-for="item in categoriesData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" />
-  </ul>
+  <div class="cocktails-list-container">
+    <h2 class="page-title">drinks category: {{ category }}</h2>
+    <ul class="cocktails-list">
+      <CocktailsList v-for="item in categoriesData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" />
+    </ul>
+  </div>
+  <FooterComponent/>
 </template>
 
 <script>
 import HeaderComponent from '../components/HeaderComponent.vue'
+import FooterComponent from '../components/FooterComponent.vue'
 import ApiService from '@/services/api.service.js'
 import CocktailsList from '../components/CocktailsListComponent.vue'
 
@@ -16,7 +21,8 @@ export default {
   name: 'CategoryView',
   components: {
     HeaderComponent,
-    CocktailsList
+    CocktailsList,
+    FooterComponent
   },
   data () {
     return {

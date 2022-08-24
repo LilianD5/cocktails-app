@@ -39,4 +39,44 @@ table {
 }
 
 /* RESET END */
+
+@font-face{
+  font-family: 'Antic Didone';
+  src: url('./assets/fonts/AnticDidone-Regular.ttf');
+}
+
+body{
+  background-color: #1E1E1E;
+  color: #d8d8d8;
+  font-family: 'Antic Didone', 'Times New Roman', Times, serif;
+}
+
+.overflow-hidden{
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+.cocktails-list-container{
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.page-title{
+  font-size: 30px;
+  text-transform: capitalize;
+  text-align: center;
+  padding: 5vh 0;
+  letter-spacing: 3px;
+}
+
+a{
+  text-decoration: none;
+  color: #d8d8d8;
+}
+
+.flex-start{
+  display: flex;
+  justify-content: start;
+}
 </style>

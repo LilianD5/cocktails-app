@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import TypeView from '../views/TypeView.vue'
 import IngredientView from '../views/IngredientView.vue'
 import CategoryView from '../views/CategoryView.vue'
+import CocktailView from '../views/CocktailView.vue'
 
 const routes = [
   {
@@ -11,19 +12,24 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/selection/:type',
+    path: '/types/:type',
     name: 'type',
     component: TypeView
   },
   {
-    path: '/selection/:ingredient',
+    path: '/ingredients/:ingredient',
     name: 'ingredient',
     component: IngredientView
   },
   {
-    path: '/selection/:category',
+    path: '/categories/:category',
     name: 'category',
     component: CategoryView
+  },
+  {
+    path: '/drinks/:id',
+    name: 'cocktail',
+    component: CocktailView
   }
 ]
 
