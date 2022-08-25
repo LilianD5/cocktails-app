@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import HeaderComponent from '../components/HeaderComponent.vue'
-import FooterComponent from '../components/FooterComponent.vue'
+import HeaderComponent from '@/components/HeaderComponent.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 import ApiService from '@/services/api.service.js'
-import CocktailsList from '../components/CocktailsListComponent.vue'
+import CocktailsList from '@/components/CocktailsListComponent.vue'
 
 const apiService = new ApiService()
 

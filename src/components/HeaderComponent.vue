@@ -43,8 +43,8 @@
 
 <script>
 import ApiService from '@/services/api.service.js'
-import IngredientsList from './header/IngredientsListComponent.vue'
-import CategoriesList from './header/CategoriesListComponent.vue'
+import IngredientsList from '@/components/header/IngredientsListComponent.vue'
+import CategoriesList from '@/components/header/CategoriesListComponent.vue'
 
 const apiService = new ApiService()
 

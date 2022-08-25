@@ -27,7 +27,11 @@ export default class ApiService {
     return fetch('https://www.thecocktaildb.com/api/json/v2/9973533/popular.php')
   }
 
-  getRandom () {
+  getRandomCocktails () {
     return fetch('https://www.thecocktaildb.com/api/json/v2/9973533/randomselection.php')
+  }
+
+  getResearchCocktails (search) {
+    return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
   }
 }

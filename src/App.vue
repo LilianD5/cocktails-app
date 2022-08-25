@@ -79,4 +79,12 @@ a{
   display: flex;
   justify-content: start;
 }
+
+.show{
+  display: block;
+}
+
+.none{
+  display: none;
+}
 </style>

@@ -24,12 +24,11 @@
     <p>{{ cocktailData.strInstructions }}</p>
   </div>
 </div>
-<div v-else>erreur</div>
 </template>
 
 <script>
 import ApiService from '@/services/api.service.js'
-import CocktailDetailsIngredients from './details/CocktailDetailsIngredientsComponent.vue'
+import CocktailDetailsIngredients from '@/components/details/CocktailDetailsIngredientsComponent.vue'
 
 const apiService = new ApiService()
 
@@ -42,13 +41,11 @@ export default {
     return {
       cocktailData: null,
       ingredientsData: null,
-      id: this.$route.params.id,
-      seeAlsoData: null
+      id: this.$route.params.id
     }
   },
   created () {
     this.cocktailDetails(this.id)
-    this.popularCocktail()
   },
   methods: {
     async cocktailDetails (id) {
@@ -73,12 +70,6 @@ export default {
       }
       //   console.log(recipe)
       this.ingredientsData = recipe
-    },
-    async popularCocktail () {
-      const res = await apiService.getPopularCocktails()
-      const popular = await res.json()
-      this.seeAlsoData = popular.drinks
-      console.log(popular)
     }
   }
 }
