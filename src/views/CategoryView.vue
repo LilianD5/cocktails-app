@@ -38,7 +38,7 @@ export default {
       const res = await apiService.getCocktailsListByCategories(category)
       const cocktails = await res.json()
       this.categoriesData = cocktails.drinks
-      console.log(cocktails.drinks)
+      // console.log(cocktails.drinks)
     }
   }
 }

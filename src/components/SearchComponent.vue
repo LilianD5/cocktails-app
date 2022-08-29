@@ -1,10 +1,13 @@
 <template>
-<div>
+<div class="search-input">
   <h2>Looking for a drink ?</h2>
   <input type="text" v-model="search" placeholder="Search the drink you are looking for here">
 </div>
-<div class="flex-start cards-container">
+<div  v-if="searchData !== null" class="flex-start cards-container">
   <CocktailCard v-for="item in searchData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" />
+</div>
+<div  v-else class="flex-start cards-container">
+  <p>Sorry couldn't find any drinks corresponding</p>
 </div>
 </template>
 
@@ -21,7 +24,7 @@ export default {
   },
   data () {
     return {
-      searchData: null,
+      searchData: '',
       search: null
     }
   },
@@ -38,8 +41,12 @@ export default {
     async searchCocktails (search) {
       const res = await apiService.getResearchCocktails(search)
       const results = await res.json()
-      this.searchData = results.drinks
-      console.log(results.drinks)
+      if (search === null) {
+        this.searchData = ''
+      } else {
+        this.searchData = results.drinks
+      }
+      // console.log(results.drinks)
     }
   }
 }
@@ -74,5 +81,17 @@ h2{
   width: 90%;
   margin: 0 auto;
   flex-wrap: wrap;
+}
+p{
+  font-size: 20px;
+}
+@media screen and (max-width: 500px) {
+  input{
+    height: 25px;
+    font-size: 15px;
+  }
+  h2{
+    font-size: 20px;
+  }
 }
 </style>

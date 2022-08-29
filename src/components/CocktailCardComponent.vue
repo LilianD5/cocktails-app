@@ -33,10 +33,11 @@ export default {
 h3{
     font-size: 20px;
     text-align: center;
-    padding: 5vh 0 20px;
+    padding-bottom:20px;
 }
 .cards{
-    width: 33%;
+  width: 33%;
+  padding-bottom: 20px;
 }
 img{
   width: 80%;
@@ -48,5 +49,18 @@ img{
 }
 .cocktailSlider img {
   width: 30%;
+}
+@media screen and (max-width: 768px) {
+  .cards{
+    width: 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .cocktailSlider img {
+    width: 50%;
+  }
+  .cards{
+    width: 100%;
+  }
 }
 </style>

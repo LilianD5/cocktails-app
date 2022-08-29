@@ -87,4 +87,14 @@ a{
 .none{
   display: none;
 }
+
+@media screen and (max-width: 500px) {
+  .page-title{
+    font-size: 22px;
+    text-transform: capitalize;
+    text-align: center;
+    padding: 5vh 0;
+    letter-spacing: 3px;
+  }
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="flex-between">
+    <div class="flex-between legal-infos">
         <p>Conditions of Use</p>
         <p>Privacy Notice</p>
         <p>Contact Us</p>
@@ -20,33 +20,45 @@ export default {
 
 <style scoped>
 p{
-    text-transform: capitalize;
-    font-size: 20px;
-    letter-spacing: 3px;
-    cursor: pointer;
+  text-transform: capitalize;
+  font-size: 20px;
+  letter-spacing: 3px;
+  cursor: pointer;
 }
-
 div > p:hover{
-    color: #9e9e9e;;
+  color: #9e9e9e;;
 }
-
 .flex-between{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
-
 footer{
-    width: 90%;
-    max-width: 1400px;
-    margin: 10vh auto 0;
-    padding-top: 10vh;
-    border-top: 1px solid #d8d8d8;
+  width: 90%;
+  max-width: 1400px;
+  margin: 10vh auto 0;
+  padding-top: 10vh;
+  border-top: 1px solid #d8d8d8;
 }
-
 .copyrights{
+  text-align: center;
+  font-size: 22px;
+  padding: 20px 0;
+  cursor: default;
+}
+@media screen and (max-width: 768px) {
+  p{
+    font-size: 15px;
     text-align: center;
-    font-size: 22px;
-    padding: 20px 0;
-    cursor: default;
+    padding-top: 10px;
+  }
+  .legal-infos{
+    display: block;
+  }
+  footer{
+    padding-top: 10px;
+  }
+  .copyrights{
+    font-size: 15px;
+  }
 }
 </style>

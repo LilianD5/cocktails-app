@@ -252,6 +252,10 @@ h1{
   letter-spacing: 2px;
   padding: 10px 0;
   cursor: pointer;
-}
+  }
+
+  header{
+    height: 80px;
+  }
 }
 </style>

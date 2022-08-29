@@ -78,8 +78,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 p{
-    font-size: 20px;
-    padding-top: 7px;
+  font-size: 20px;
+  padding-top: 7px;
 }
 h2{
     text-align: center;
@@ -110,6 +110,50 @@ img{
     padding-right: 5vw;
 }
 .sub-infos-container{
-    padding-top: 3vh;
+    padding-top: 30px;
+}
+@media screen and (max-width: 768px) {
+  h3{
+    font-size: 20px;
+  }
+  h2{
+    font-size: 25px;
+  }
+  p{
+    font-size: 17px;
+  }
+  .infos-container{
+    width: 58%;
+  }
+  .sub-infos-container{
+    padding-top: 15px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .recipe-container{
+    display: block;
+    padding-top: 2vh;
+  }
+  .infos-container{
+    width: 100%;
+    padding-right: 0;
+    margin: 0 auto;
+  }
+  h3{
+    font-size: 22px;
+    padding-top: 20px;
+  }
+  h2{
+    padding-top: 5vh;
+  }
+  p{
+    font-size: 17px;
+  }
+  .sub-infos-container{
+    padding-top: 15px;
+  }
+  .instructions-container{
+    padding-top: 0;
+  }
 }
 </style>

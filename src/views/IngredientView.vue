@@ -38,7 +38,7 @@ export default {
       const res = await apiService.getCocktailsListByIngredients(ingredient)
       const cocktails = await res.json()
       this.ingredientsData = cocktails.drinks
-      console.log(cocktails.drinks)
+      // console.log(cocktails.drinks)
     }
   }
 }

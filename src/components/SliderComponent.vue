@@ -3,7 +3,9 @@
   <h2>Our Most Popular Cocktails</h2>
 </div>
 <div id="slider">
+  <img src="../assets/sldier-button-back.svg" alt="" class="slider-btns" id="slider-back-btn" v-on:click="previous">
   <CocktailCard v-for="(item, index) in cocktailsData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" :index="index" :show="currentIndex"/>
+  <img src="../assets/sldier-button.svg" alt="" class="slider-btns" v-on:click="next">
 </div>
 </template>
 
@@ -67,8 +69,23 @@ h2{
   margin: 0 auto;
 }
 #slider{
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  padding-top: 5vh;
+}
+.slider-btns{
+  width: 5%;
+  cursor: pointer;
+}
+@media screen and (max-width: 500px) {
+  input{
+    height: 35px;
+    font-size: 15px;
+  }
+  h2{
+    font-size: 20px;
+  }
 }
 </style>

@@ -19,7 +19,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 p{
-    font-size: 20px;
-    padding-top: 7px;
+  font-size: 20px;
+  padding-top: 7px;
+}
+@media screen and (max-width: 768px) {
+  p{
+    font-size: 17px;
+  }
 }
 </style>

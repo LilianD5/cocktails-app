@@ -18,14 +18,6 @@ export default {
     CocktailDetails,
     CocktailInspiration,
     FooterComponent
-  },
-  mounted () {
-    this.loaded()
-  },
-  methods: {
-    loaded () {
-      console.log(this.$options.components)
-    }
   }
 }
 </script>

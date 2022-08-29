@@ -21,4 +21,14 @@ li{
 li:hover{
   color: #9e9e9e;
 }
+@media screen and (max-width: 500px) {
+  li{
+    font-size: 18px;
+    padding: 15px 0 8px;
+    border-bottom: 1px solid #d8d8d8;
+  }
+  li:hover{
+    color: #9e9e9e;
+  }
+}
 </style>
