@@ -49,6 +49,7 @@ body{
   background-color: #1E1E1E;
   color: #d8d8d8;
   font-family: 'Antic Didone', 'Times New Roman', Times, serif;
+  height: 100vh;
 }
 
 .overflow-hidden{
@@ -86,6 +87,12 @@ a{
 
 .none{
   display: none;
+}
+
+footer{
+  padding-top: 10px;
+  position: relative;
+  bottom: 0;
 }
 
 @media screen and (max-width: 500px) {

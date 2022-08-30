@@ -4,6 +4,7 @@ import TypeView from '../views/TypeView.vue'
 import IngredientView from '../views/IngredientView.vue'
 import CategoryView from '../views/CategoryView.vue'
 import CocktailView from '../views/CocktailView.vue'
+import PartyView from '../views/PartyView.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/drinks/:id',
     name: 'cocktail',
     component: CocktailView
+  },
+  {
+    path: '/party-planner',
+    name: 'party',
+    component: PartyView
   }
 ]
 

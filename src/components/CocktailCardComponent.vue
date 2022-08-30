@@ -1,5 +1,9 @@
 <template>
-<div class="cards" v-show="index === show" :class="baseID">
+<div class="cards" v-if="partyIs === true">
+  <h3>{{ name }}</h3>
+  <img :src="thumbnail" alt="">
+</div>
+<div class="cards" v-else v-show="index === show" :class="baseID">
 <router-link :to="{ name: 'cocktail', params: {id: id}}" >
   <h3>{{ name }}</h3>
   <img :src="thumbnail" alt="">
@@ -12,7 +16,7 @@
 
 export default {
   name: 'CocktailCard',
-  props: ['name', 'thumbnail', 'id', 'show', 'index'],
+  props: ['name', 'thumbnail', 'id', 'show', 'index', 'partyIs'],
   data () {
     if (typeof this.show !== 'undefined') {
       return {

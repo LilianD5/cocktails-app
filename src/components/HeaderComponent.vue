@@ -37,6 +37,9 @@
           </ul>
         </nav>
       </li>
+      <router-link :to="{ name: 'party' }">
+        <li v-on:click="toggleMenu" class="menu-li">plan your party</li>
+      </router-link>
     </ul>
   </nav>
 </template>

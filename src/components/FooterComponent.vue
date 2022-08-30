@@ -54,9 +54,6 @@ footer{
   .legal-infos{
     display: block;
   }
-  footer{
-    padding-top: 10px;
-  }
   .copyrights{
     font-size: 15px;
   }
