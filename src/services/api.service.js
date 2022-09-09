@@ -34,4 +34,20 @@ export default class ApiService {
   getResearchCocktails (search) {
     return fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`)
   }
+
+  getRatingByName (name) {
+    return fetch(`http://localhost:7070/api/getOne/${name}`)
+  }
+
+  UpdateRatingByName (name, note, vote) {
+    return fetch(`http://localhost:7070/api/update/${name}/${note}/${vote}`, {
+      method: 'PATCH'
+    })
+  }
+
+  CreateNewEntryRating (name, note) {
+    return fetch(`http://localhost:7070/api/post/${name}/${note}`, {
+      method: 'POST'
+    })
+  }
 }

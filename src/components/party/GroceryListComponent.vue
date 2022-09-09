@@ -1,5 +1,5 @@
 <template>
-    <p>{{ ing.value }}</p>
+    <p>{{ ing }}</p>
 </template>
 
 <script>

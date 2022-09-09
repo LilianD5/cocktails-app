@@ -17,6 +17,9 @@
           <h3 v-if="cocktailData.strAlcoholic === 'Alcoholic'">Alcohol : Yes</h3>
           <h3 v-else>Alcohol: No</h3>
         </div>
+        <div>
+          <RatingComponent :name="cocktailData.strDrink" />
+        </div>
     </div>
   </div>
   <div class="instructions-container">
@@ -29,19 +32,23 @@
 <script>
 import ApiService from '@/services/api.service.js'
 import CocktailDetailsIngredients from '@/components/details/CocktailDetailsIngredientsComponent.vue'
+import RatingComponent from '../rating/RatingComponent.vue'
 
 const apiService = new ApiService()
 
 export default {
   name: 'CocktailDetails',
   components: {
-    CocktailDetailsIngredients
+    CocktailDetailsIngredients,
+    RatingComponent
   },
   data () {
     return {
       cocktailData: null,
       ingredientsData: null,
-      id: this.$route.params.id
+      id: this.$route.params.id,
+      starValue: null,
+      rate: false
     }
   },
   created () {
@@ -111,6 +118,26 @@ img{
 }
 .sub-infos-container{
     padding-top: 30px;
+}
+.rating-container{
+  display: flex;
+  justify-content: start;
+}
+.stars{
+  width: 30px;
+  padding-right: 12px;
+  padding-top: 12px;
+  filter: grayscale(1);
+  cursor: pointer;
+}
+.stars-hover{
+  filter: grayscale(0);
+}
+.stars-clicked{
+  filter: grayscale(0);
+}
+.rate{
+  padding-top: 12px;
 }
 @media screen and (max-width: 768px) {
   h3{

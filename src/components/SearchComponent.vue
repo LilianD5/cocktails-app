@@ -4,14 +4,14 @@
     <h2>My Party</h2>
     <h3>Drinks choosen</h3>
     <div v-if="this.selectedCocktailData.length !== 0">
-      <PlanComponent  v-on:click="remove(index, item.idDrink, this.ingredientsData)" v-for="(item, index) in selectedCocktailData" :key="item.idDrink" :name="item.strDrink"/>
+      <PlanComponent  v-on:click="remove(index, item.idDrink, this.selectedCocktailData, this.cocktailsGrocery)" v-for="(item, index) in selectedCocktailData" :key="item.idDrink" :name="item.strDrink"/>
     </div>
     <div v-else>
       <p>No drinks choosen yet</p>
     </div>
     <div v-if="this.ingredientsData.length !== 0">
       <h3>My Grocery List</h3>
-      <GroceryList v-for="(value, index) in ingredientsData" :key="index" :ing="value"/>
+      <GroceryList v-for="(value, index) in arrayUniqueIng" :key="index" :ing="value"/>
     </div>
   </div>
   <div>
@@ -20,7 +20,7 @@
       <input type="text" v-model="search" placeholder="Search the drink you are looking for here">
     </div>
     <div  v-if="searchData !== null" class="flex-start cards-container">
-      <CocktailCard v-on:click="getCocktailSelected(item.idDrink, this.ingredientsData)" v-for="item in searchData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" :partyIs="this.party" />
+      <CocktailCard v-on:click="getCocktailSelected(item.idDrink, this.selectedCocktailData, this.cocktailsGrocery, this.ingredientsData)" v-for="item in searchData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" :partyIs="this.party" />
     </div>
     <div  v-else class="flex-start cards-container">
       <p>Sorry couldn't find any drinks corresponding</p>
@@ -34,7 +34,7 @@
       <input type="text" v-model="search" placeholder="Search the drink you are looking for here">
     </div>
     <div  v-if="searchData !== null" class="flex-start cards-container">
-      <CocktailCard v-on:click="getCocktailSelected(item.idDrink, this.ingredientsData)" v-for="item in searchData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" :partyIs="this.party" />
+      <CocktailCard v-on:click="getCocktailSelected(item.idDrink, this.selectedCocktailData, this.cocktailsGrocery, this.ingredientsData)" v-for="item in searchData" :key="item.idDrink" :id="item.idDrink" :name="item.strDrink" :thumbnail="item.strDrinkThumb" :partyIs="this.party" />
     </div>
     <div  v-else class="flex-start cards-container">
       <p>Sorry couldn't find any drinks corresponding</p>
@@ -65,7 +65,8 @@ export default {
       party: false,
       selectedCocktailData: [],
       ingredientsData: [],
-      cocktailsGrocery: []
+      cocktailsGrocery: [],
+      arrayUniqueIng: []
     }
   },
   mounted () {
@@ -99,7 +100,7 @@ export default {
       }
       // console.log(this.party)
     },
-    async getCocktailSelected (id, array) {
+    async getCocktailSelected (id, arraySelected, arrayGrocery, arrayIng) {
       const res = await apiService.getCocktailDetails(id)
       const results = await res.json()
 
@@ -107,91 +108,64 @@ export default {
       let i = 1
       let strIngCurrent = strIngBase + i.toString()
 
-      if (this.selectedCocktailData.length === 0 && array.length === 0) {
-        this.selectedCocktailData.push(results.drinks[0])
-        while (results.drinks[0][strIngCurrent] !== null) {
-          array.push({
-            key: results.drinks[0].strDrink,
-            value: results.drinks[0][strIngCurrent]
-          })
-          i++
-          strIngCurrent = strIngBase + i.toString()
-        }
-        this.cocktailsGrocery.push(results.drinks[0].strDrink)
-      } else {
-        if (this.cocktailsGrocery.includes(results.drinks[0].strDrink) === false) {
-          this.selectedCocktailData.push(results.drinks[0])
-          array.forEach(element => {
-            console.log(this.cocktailsGrocery.includes(results.drinks[0].strDrink))
-            if (this.cocktailsGrocery.includes(results.drinks[0].strDrink) === false) {
-              while (results.drinks[0][strIngCurrent] !== null) {
-                array.push({
-                  key: results.drinks[0].strDrink,
-                  value: results.drinks[0][strIngCurrent]
-                })
-                // console.log(results.drinks[-1].strDrink)
-                console.log(element.key)
-                i++
-                strIngCurrent = strIngBase + i.toString()
-              }
-            }
-          })
-          this.cocktailsGrocery.push(results.drinks[0].strDrink)
-        }
-      }
-      console.log(this.cocktailsGrocery)
-      console.log(this.selectedCocktailData)
+      const allIng = []
 
-      if (array.length === 0) {
+      if (arraySelected.length === 0 && arrayIng.length === 0) {
+        arraySelected.push(results.drinks[0])
         while (results.drinks[0][strIngCurrent] !== null) {
-          array.push({
+          arrayIng.push({
             key: results.drinks[0].strDrink,
             value: results.drinks[0][strIngCurrent]
           })
           i++
           strIngCurrent = strIngBase + i.toString()
         }
-      } else {
-        array.forEach(element => {
-          console.log(this.cocktailsGrocery.includes(results.drinks[0].strDrink))
-          if (this.cocktailsGrocery.includes(results.drinks[0].strDrink) === false) {
-            while (results.drinks[0][strIngCurrent] !== null) {
-              array.push({
-                key: results.drinks[0].strDrink,
-                value: results.drinks[0][strIngCurrent]
-              })
-              // console.log(results.drinks[-1].strDrink)
-              console.log(element.key)
-              i++
-              strIngCurrent = strIngBase + i.toString()
-            }
-          }
+        arrayIng.forEach(element => {
+          allIng.push(element.value)
         })
+        this.arrayUniqueIng = new Set(allIng)
+        // console.log(this.arrayUniqueIng)
+        arrayGrocery.push(results.drinks[0].strDrink)
+      } else {
+        if (arrayGrocery.includes(results.drinks[0].strDrink) === false) {
+          arraySelected.push(results.drinks[0])
+          while (results.drinks[0][strIngCurrent] !== null) {
+            arrayIng.push({
+              key: results.drinks[0].strDrink,
+              value: results.drinks[0][strIngCurrent]
+            })
+            i++
+            strIngCurrent = strIngBase + i.toString()
+          }
+          arrayIng.forEach(element => {
+            allIng.push(element.value)
+          })
+          this.arrayUniqueIng = new Set(allIng)
+          // console.log(this.arrayUniqueIng)
+          arrayGrocery.push(results.drinks[0].strDrink)
+        }
       }
-      const set = new Set(array)
-      this.ingredientsData = Array.from(set)
-      // console.log(this.ingredientsData)
-      // console.log(this.selectedCocktailData)
     },
-    async remove (index, id) {
-      console.log(index)
-      this.selectedCocktailData.splice(index, 1)
-      this.cocktailsGrocery.splice(index, 1)
+    async remove (index, id, arraySelected, arrayGrocery) {
+      arraySelected.splice(index, 1)
+      arrayGrocery.splice(index, 1)
 
       const res = await apiService.getCocktailDetails(id)
       const results = await res.json()
 
       const ingKey = results.drinks[0].strDrink
+      const allIng = []
 
-      this.ingredientsData = this.ingredientsData.filter((item) => {
+      const arrayIng = this.ingredientsData.filter((item) => {
         return (item.key !== ingKey)
       })
-
-      // if (this.selectedCocktailData)
-
-      // console.log(id)
-      // console.log(results.drinks)
-      console.log(this.ingredientsData)
+      // console.log(arrayIng)
+      arrayIng.forEach(element => {
+        allIng.push(element.value)
+      })
+      this.arrayUniqueIng = new Set(allIng)
+      // console.log(this.arrayUniqueIng)
+      this.ingredientsData = arrayIng
     }
   }
 }
